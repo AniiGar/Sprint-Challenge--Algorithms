@@ -3,30 +3,27 @@ Your function should take in a single parameter (a string `word`)
 Your function should return a count of how many occurences of ***"th"*** occur within `word`. Case matters.
 Your function must utilize recursion. It cannot contain any loops.
 '''
-# def count_th(word):
 
-#     if not word:
-#         return 0
-#     elif word[0]==th:
-#         return 1+count_th(word[1:])
-#     else:
-#         return count_th(word[1:])
-    
-    # count = 0
-  
-    # for i in test_str: 
-    #     if i == 'e': 
-    #         count = count + 1
-    
+# Take a string and check for letter combination
+# Base case stops when there are no more letters
+# If there are letters check if letter combo matches
+# If letter combo matches add one number to the count
+# Move to the next letter and check for that combo
+# If the letters don't match move to next set of letters
+# Remove one letter from the string with every check
 
-def check(string,ch):
-      if not string:
+def count_th(word):
+    # Set base case to <= 1 because if string is only 1 character long it is not a match    
+    if len(word) <= 1:
+        # Return 0 because there are no matching characters
         return 0
-      elif string[0]==ch:
-            return 1+check(string[1:],ch)
-      else:
-            return check(string[1:],ch)
-# string=raw_input("Enter string:")
-# ch=raw_input("Enter character to check:")
-print("Count is:")
-print(check('dnvlajdlch chch adlfljlajch', 'ch'))
+    # If the string is longer than 1 charcater check for match
+    else:
+        # Set count to 0
+        count = 0
+        # Check if the first two characters = th. If match, add 1 to count
+        if word[0:2] == 'th':
+            count = 1
+        # Return the current count and then run the function again minus the first character
+        return count + count_th(word[1:])
+ 
